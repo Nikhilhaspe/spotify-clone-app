@@ -4,8 +4,8 @@ export const initialState = {
   playing: false,
   item: null,
   // TODO: REMOVE IN PRODUCTION MODE
-  token:
-    "BQDRS2DLh410Afc3wnTzkUf4jJU0IwKBfdfFi_Q3dLhvSy5GAdCHhsoSGzbc1SYBCWFQ27DrOILWb5nV0os40kY_OUdTnba5zdYt22NDHRNpOQi28Y3ySXCA2gMh2NlyOq-eh8sNewWKlln6-H4WdUC4UpIKYLvwsZHBkMNb9fIimsH5JKe4uWk7oVwG9GbXD82UpR7BEO9rhxJkSeY9",
+  // token:
+  //   "BQDRS2DLh410Afc3wnTzkUf4jJU0IwKBfdfFi_Q3dLhvSy5GAdCHhsoSGzbc1SYBCWFQ27DrOILWb5nV0os40kY_OUdTnba5zdYt22NDHRNpOQi28Y3ySXCA2gMh2NlyOq-eh8sNewWKlln6-H4WdUC4UpIKYLvwsZHBkMNb9fIimsH5JKe4uWk7oVwG9GbXD82UpR7BEO9rhxJkSeY9",
 };
 
 const reducer = (state, action) => {
@@ -26,6 +26,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlists: action.playlists,
+      };
+    case "SET_DISCOVER_WEEKLY":
+      return {
+        ...state,
+        discover_weekly: action.discover_weekly,
       };
     default:
       return state;

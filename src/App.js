@@ -16,6 +16,7 @@ function App() {
     const hash = getTokenFromUrl();
     window.location.hash = "";
     const _token = hash.access_token;
+    console.log("***", _token);
     if (_token) {
       dispatch({
         type: "SET_TOKEN",
@@ -36,6 +37,14 @@ function App() {
           playlists: playlists,
         });
       });
+
+      // GET SONGS FROM PLAYLIST
+      spotify.getPlaylist("6ehdSiG3d2TinBXr1r7ZK0").then((response) =>
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        })
+      );
     }
   }, []);
 
