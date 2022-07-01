@@ -25,7 +25,7 @@ function App() {
       spotify.getMe().then((user) => {
         dispatch({
           type: "SET_USER",
-          user,
+          user: user,
         });
       });
 

@@ -3,7 +3,6 @@ import React from "react";
 import "./SidebarOption.css";
 
 const SidebarOption = ({ title, Icon }) => {
-  console.log(title);
   return (
     <div className="sidebarOption">
       {Icon && <Icon className="sidebarOption__icon" />}

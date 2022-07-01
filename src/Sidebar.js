@@ -12,7 +12,6 @@ import { useDataLayerValue } from "./DataLayer";
 
 const Sidebar = () => {
   const [{ playlists }, dispatch] = useDataLayerValue();
-  console.log("**LIST", playlists);
   return (
     <div className="sidebar">
       <img
