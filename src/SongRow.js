@@ -1,10 +1,32 @@
 import React from "react";
 
 import "./SongRow.css";
+import { useDataLayerValue } from "./DataLayer";
 
 const SongRow = ({ track }) => {
+  const [{ spotify }, dispatch] = useDataLayerValue();
+
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((res) => {
+          dispatch({
+            type: "SET_ITEM",
+            item: res.item,
+          });
+          dispatch({
+            type: "SET_PLAYING",
+            playing: true,
+          });
+        });
+      });
+  };
+
   return (
-    <div className="songRow">
+    <div className="songRow" onClick={() => playSong(track.id)}>
       <img
         className="songRow_album"
         src={track.album.images[0].url}

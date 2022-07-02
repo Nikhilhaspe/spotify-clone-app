@@ -10,13 +10,31 @@ import "./Body.css";
 import { useDataLayerValue } from "./DataLayer";
 import SongRow from "./SongRow";
 
-const Body = ({ spotify }) => {
-  const [state, dispatch] = useDataLayerValue();
-  console.log(state);
-  const { discover_weekly } = state;
+const Body = () => {
+  const [{ discover_weekly, spotify }, dispatch] = useDataLayerValue();
+
+  const playPlaylist = () => {
+    spotify
+      .play({
+        context_uri: `spotify:playlist:6ehdSiG3d2TinBXr1r7ZK0`,
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((res) => {
+          dispatch({
+            type: "SET_ITEM",
+            item: res.item,
+          });
+          dispatch({
+            type: "SET_PLAYING",
+            playing: true,
+          });
+        });
+      });
+  };
+
   return (
     <div className="body">
-      <Header spotify={spotify} />
+      <Header />
       <div className="body__info">
         <img src={discover_weekly?.images[0]?.url} alt="" />
         <div className="body_infoText">
@@ -27,7 +45,10 @@ const Body = ({ spotify }) => {
       </div>
       <div className="body__songs">
         <div className="body__icons">
-          <PlayCircleFilledWhiteIcon className="body__shuffle" />
+          <PlayCircleFilledWhiteIcon
+            className="body__shuffle"
+            onClick={playPlaylist}
+          />
           <FavoriteIcon fontSize="large" />
           <MoreHorizIcon />
         </div>

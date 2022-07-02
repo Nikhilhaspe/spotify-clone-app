@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { Avatar } from "@mui/material";
 import { useDataLayerValue } from "./DataLayer";
 
-const Header = ({ spotify }) => {
+const Header = () => {
   const [{ user }, dispatch] = useDataLayerValue();
   return (
     <div className="header">
